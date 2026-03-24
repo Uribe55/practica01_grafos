@@ -1,4 +1,9 @@
-public class FoodExpressTest {
+import java.util.NoSuchElementException;
+import java.util.Iterator;
+
+
+public class FoodExpressTest 
+{
     public static void main(String[] args) {
         Grafo grafo = new Grafo(6);
         grafo.conectar(0, 1);
@@ -9,6 +14,11 @@ public class FoodExpressTest {
         grafo.conectar(4, 5);
         System.out.println("=== RED DE DELIVERY FOODEXPRESS ===\n");
         System.out.println(grafo.toString());
+        System.out.println(grafo.Zonas(0) + " esta conectada a " + grafo.Zonas(1) + " : " + grafo.zonasConectadas(0, 1));
+        System.out.println(grafo.Zonas(0) + " esta conectada a " + grafo.Zonas(5) + " : " + grafo.zonasConectadas(0, 5));
         
+        System.out.println("Vecinos de " + grafo.Zonas(0) + ": " + grafo.listarZonasVecinas(0));
+        System.out.println("Vecinos de " + grafo.Zonas(3) + ": " + grafo.listarZonasVecinas(3));
+        System.out.println("Vecinos de " + grafo.Zonas(5) + ": " + grafo.listarZonasVecinas(5));
     }
 }

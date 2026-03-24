@@ -29,7 +29,7 @@ public class Grafo {
         return enlaces[zona];
     }
 
-    public boolean zonasConectadas(int zona1, int zona2){
+    public boolean Conectadas(int zona1, int zona2){
         Pila<Integer> frontera = new Pila<>();
         frontera.empilar(zona1);
         Lista<Integer> vistados = new Lista<>();
@@ -47,8 +47,16 @@ public class Grafo {
         }
         return false;
     }
+     public boolean zonasConectadas(int zona1, int zona2){
+        for (Integer i : enlaces[zona1]) {
+            if(i == zona2){
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public void busquedaAmplitud(int zonaInicial, int zonaFianl, Grafo grafo){
+    public void busquedaAmplitud(int zonaInicial, int zonaFinal, Grafo grafo){
         Cola<Integer> cola = new Cola<>();
         cola.encolar(zonaInicial);
         Lista<Integer> visitados = new Lista<>();
@@ -60,7 +68,7 @@ public class Grafo {
             }
         }
     }
-    private String Zonas(int num){
+    public String Zonas(int num){
         switch (num) {
             case 0:
                 return "El Prado";
