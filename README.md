@@ -1,9 +1,14 @@
 # practica01_grafos
 Actividad Practica: Optimizacion de Rutas de Delivery en Cochabamba
+
+========================================================
+
 Integrantes:
 Ona Alcoba Sebastian Alexandre
 Perez Torrico Sebastian
 Uribe Pessoa Eric
+
+========================================================
 
 === RED DE DELIVERY FOODEXPRESS === 
 6 zonas 6 enlaces
@@ -36,3 +41,12 @@ Orden de visita de la zona:
 
 ÉXITO: Se visitaron TODAS las 6 zonas sin repetir.
 Total de paradas: 6
+
+========================================================
+
+Recomendacioes:
+Basado en los resultados obtenidos, se recomienda a FoodExpress Cochabamba fortalecer su red de rutas agregando una conexión directa entre El Prado (0) y Queru Queru (4), lo que reduciría significativamente los tiempos de entrega hacia el Aeropuerto (5) y mejoraría la eficiencia logística general. Asimismo, se sugiere ubicar el centro de distribución principal en El Prado (0) por su alta conectividad, y uno secundario en Recoleta (3) para atender eficientemente las zonas norte y universitaria. La implementación de los algoritmos BFS y DFS en una aplicación móvil para repartidores permitirá calcular rutas óptimas en tiempo real y planificar recorridos completos sin repetir zonas, optimizando así las operaciones diarias y reduciendo costos operativos. Finalmente, se propone añadir conexiones alternativas como Cala Cala (1) con Aeropuerto (5) y América Oeste (2) con Queru Queru (4) para descongestionar nodos críticos y garantizar la resiliencia de la red ante posibles contingencias.
+
+Conclusiones:
+La red actual de FoodExpress Cochabamba es funcional y conexa, pero con pequeñas mejoras en infraestructura de rutas y el uso de algoritmos de búsqueda, es posible reducir tiempos de entrega, optimizar recorridos y escalar operaciones de manera eficiente. La implementación de BFS y DFS ha demostrado ser efectiva para estos fines, y su integración en herramientas tecnológicas representaría un valor agregado significativo para la empresa.
+
