@@ -43,14 +43,16 @@ public class Lista<T> implements Iterable<T> {
         return x;
     }
 
-    public T get(int pos){
-        if (pos > getTam()-1){
-            throw new NoSuchElementException("Fuera de rango");
+   public T get(int pos) {
+        if (pos < 0 || pos >= getTam()) {
+            throw new NoSuchElementException("Posición fuera de rango: " + pos);
         }
-        for (int i=0; i<pos; i++){
-            cabeza = cabeza.enlace;
+        
+        Nodo<T> actual = cabeza; 
+        for (int i = 0; i < pos; i++) {
+            actual = actual.enlace; 
         }
-        return cabeza.item;
+        return actual.item;
     }
 
     public boolean pertenece(T itemBuscado) {

@@ -29,6 +29,20 @@ public class Grafo {
         return enlaces[zona];
     }
 
+    public String ZonasVecinas(int zona){
+        StringBuilder vecinos = new StringBuilder();
+        for (Integer i : enlaces[zona]) {
+            vecinos.append(Zonas(i)).append(" (").append(i).append("), ");
+        }
+        if(vecinos.length() > 0) {
+            vecinos.setLength(vecinos.length() - 2); // Eliminar la última coma y espacio
+        }
+        else {
+            vecinos.append("No hay zonas vecinas");
+        }
+        return vecinos.toString();
+    }
+    
     public boolean Conectadas(int zona1, int zona2){
         Pila<Integer> frontera = new Pila<>();
         frontera.empilar(zona1);
@@ -101,7 +115,6 @@ public class Grafo {
     }
     return "No hay ruta disponible entre " + Zonas(inicio) + " y " + Zonas(destino);
 }
-
 private String reconstruirCamino(int[] anterior, int inicio, int destino) {
     Pila<Integer> pila = new Pila<>();
     int actual = destino;
@@ -135,5 +148,69 @@ private String reconstruirCamino(int[] anterior, int inicio, int destino) {
             s.append("\n");
         }
         return s.toString();
+    }
+    public String recorridoCompletoDFS(int inicio) {
+        boolean[] visitado = new boolean[zonas];
+        Pila<Integer> pila = new Pila<>();
+        Lista<Integer> ordenVisita = new Lista<>();
+        pila.empilar(inicio);
+        
+        while (!pila.esta_vacio()) {
+            int actual = pila.desempilar();
+            if (!visitado[actual]) {
+                visitado[actual] = true;
+                ordenVisita.insertar(actual);
+                Lista<Integer> vecinosNoVisitados = new Lista<>();
+                for (Integer vecino : enlaces[actual]) {
+                    if (!visitado[vecino]) {
+                        vecinosNoVisitados.insertar(vecino);
+                    }
+                }
+                
+                for (int i = vecinosNoVisitados.getTam() - 1; i >= 0; i--) {
+                    pila.empilar(vecinosNoVisitados.get(i));
+                }
+            }
+        }
+        boolean todasVisitadas = true;
+        for (int i = 0; i < zonas; i++) {
+            if (!visitado[i]) {
+                todasVisitadas = false;
+                break;
+            }
+        }
+        StringBuilder recorrido = new StringBuilder();
+        recorrido.append(" MEJOR RUTA DE REPARTO desde ").append(Zonas(inicio)).append(":\n");
+        recorrido.append("\n");
+        recorrido.append("Orden de visita de las zonas:\n\n");
+        
+        for (int i = 0; i < ordenVisita.getTam(); i++) {
+            int zona = ordenVisita.get(i);
+            recorrido.append("  ").append(i + 1).append(". ");
+            recorrido.append(Zonas(zona)).append(" (").append(zona).append(")");
+            if (i < ordenVisita.getTam() - 1) {
+                recorrido.append(" ->");
+            }
+            recorrido.append("\n");
+        }
+        
+        recorrido.append("\n=================================\n");
+        if (!todasVisitadas) {
+            recorrido.append("\n  ADVERTENCIA: El grafo NO es completamente conexo\n");
+            recorrido.append("   No se pudieron visitar todas las zonas.\n\n");
+            recorrido.append("Zonas NO visitadas:\n");
+            for (int i = 0; i < zonas; i++) {
+                if (!visitado[i]) {
+                    recorrido.append("  • ").append(Zonas(i)).append(" (").append(i).append(")\n");
+                }
+            }
+            recorrido.append("\n Sugerencia: Agregar nuevas conexiones para conectar ");
+            recorrido.append("estas zonas aisladas.");
+        } else {
+            recorrido.append("\n ÉXITO: Se visitaron TODAS las ").append(zonas);
+            recorrido.append(" zonas sin repetir.\n");
+            recorrido.append(" Total de paradas: ").append(ordenVisita.getTam()).append("\n");
+        }
+        return recorrido.toString();
     }
 }
