@@ -48,6 +48,19 @@ public class Grafo {
         return false;
     }
 
+    public void busquedaAmplitud(int zonaInicial, int zonaFianl, Grafo grafo){
+        Cola<Integer> cola = new Cola<>();
+        cola.encolar(zonaInicial);
+        Lista<Integer> visitados = new Lista<>();
+
+        while (!cola.esta_vacio()) {
+            int nodo = cola.desencolar();
+            for (int vecino : grafo.listarZonasVecinas(nodo)) {
+                
+            }
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
