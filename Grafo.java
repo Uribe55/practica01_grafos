@@ -60,15 +60,32 @@ public class Grafo {
             }
         }
     }
-
+    private String Zonas(int num){
+        switch (num) {
+            case 0:
+                return "El Prado";
+            case 1:
+                return "Cala Cala";
+            case 2:
+                return "América Oeste";
+            case 3:
+                return "Recoleta";
+            case 4:
+                return "Qeru Qeru";
+            case 5:
+                return "Aeropuerto";
+            default:
+                return "Zona no encontrada";
+        }
+    }
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(zonas + " zonas " + rutasDierectas + " enalces " + "\n");
+        s.append(zonas + " zonas " + rutasDierectas + " enlaces " + "\n");
         for(int i = 0; i < zonas; i++){
-            s.append(i + " : ");
+            s.append(Zonas(i) + " (" + i + ") : ");
             for (int j : enlaces[i]) {
-                s.append(j + " ");
+                s.append(Zonas(j) + " (" + j + "), ");
             }
             s.append("\n");
         }
