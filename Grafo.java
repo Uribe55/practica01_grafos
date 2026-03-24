@@ -1,42 +1,42 @@
 import java.util.Arrays;
 
 public class Grafo {
-private int vertices;
-    private int arcos;
+    private int zonas;
+    private int rutasDierectas;
     private Lista<Integer>[] enlaces;
 
-    public Grafo(int v){
-        vertices = v;
-        arcos = 0;
-        enlaces = new Lista[v];
+    public Grafo(int zonas){
+        this.zonas = zonas;
+        rutasDierectas = 0;
+        enlaces = new Lista[zonas];
 
-        for(int i = 0; i < v; i++){
+        for(int i = 0; i < zonas; i++){
             enlaces[i] = new Lista<>();
         }
     }
 
-    public int getVertices() {
-        return vertices;
+    public int getzonas() {
+        return zonas;
     }
     
-    public void conectar(int v, int w){
-        arcos++;
-        enlaces[v].insertar(w);
-        enlaces[w].insertar(v);
+    public void conectar(int zona1, int zona2){
+        rutasDierectas++;
+        enlaces[zona1].insertar(zona2);
+        enlaces[zona2].insertar(zona1);
     }
 
-    public Iterable<Integer> getConexiones(int n){
-        return enlaces[n];
+    public Iterable<Integer> listarZonasVecinas(int zona){
+        return enlaces[zona];
     }
 
-    public boolean conectado(int v, int w){
+    public boolean zonasConectadas(int zona1, int zona2){
         Pila<Integer> frontera = new Pila<>();
-        frontera.empilar(v);
+        frontera.empilar(zona1);
         Lista<Integer> vistados = new Lista<>();
         Integer nodo;
         while (!frontera.esta_vacio()) {
             nodo = frontera.desempilar();
-            if (nodo == w){
+            if (nodo == zona2){
                 return true;
             }
             vistados.insertar(nodo);
@@ -51,8 +51,8 @@ private int vertices;
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(vertices + " vertices " + arcos + " enalces " + "\n");
-        for(int i = 0; i < vertices; i++){
+        s.append(zonas + " zonas " + rutasDierectas + " enalces " + "\n");
+        for(int i = 0; i < zonas; i++){
             s.append(i + " : ");
             for (int j : enlaces[i]) {
                 s.append(j + " ");
