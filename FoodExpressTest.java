@@ -20,5 +20,7 @@ public class FoodExpressTest
         System.out.println("Vecinos de " + grafo.Zonas(0) + ": " + grafo.listarZonasVecinas(0));
         System.out.println("Vecinos de " + grafo.Zonas(3) + ": " + grafo.listarZonasVecinas(3));
         System.out.println("Vecinos de " + grafo.Zonas(5) + ": " + grafo.listarZonasVecinas(5));
+
+        System.out.println("Ruta mas corta de " + grafo.Zonas(0) + " a " + grafo.Zonas(5) + ": " + grafo.busquedaAmplitud(0, 5));
     }
 }

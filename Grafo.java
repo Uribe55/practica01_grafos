@@ -55,19 +55,6 @@ public class Grafo {
         }
         return false;
     }
-
-    public void busquedaAmplitud(int zonaInicial, int zonaFinal, Grafo grafo){
-        Cola<Integer> cola = new Cola<>();
-        cola.encolar(zonaInicial);
-        Lista<Integer> visitados = new Lista<>();
-
-        while (!cola.esta_vacio()) {
-            int nodo = cola.desencolar();
-            for (int vecino : grafo.listarZonasVecinas(nodo)) {
-                
-            }
-        }
-    }
     public String Zonas(int num){
         switch (num) {
             case 0:
@@ -86,7 +73,57 @@ public class Grafo {
                 return "Zona no encontrada";
         }
     }
-    @Override
+
+    public String busquedaAmplitud(int inicio, int destino) {
+    if (inicio == destino) {
+        return Zonas(inicio);
+    }
+    Cola<Integer> cola = new Cola<>();
+    int[] anterior = new int[zonas];
+    boolean[] visitado = new boolean[zonas];
+    for (int i = 0; i < zonas; i++) {
+        anterior[i] = -1;
+    }
+    visitado[inicio] = true;
+    cola.encolar(inicio);
+    while (!cola.esta_vacio()) {
+        int actual = cola.desencolar();
+        for (Integer vecino : enlaces[actual]) {
+            if (!visitado[vecino]) {
+                visitado[vecino] = true;
+                anterior[vecino] = actual; 
+                if (vecino == destino) {
+                    return reconstruirCamino(anterior, inicio, destino);
+                }
+                cola.encolar(vecino);
+            }
+        }
+    }
+    return "No hay ruta disponible entre " + Zonas(inicio) + " y " + Zonas(destino);
+}
+
+private String reconstruirCamino(int[] anterior, int inicio, int destino) {
+    Pila<Integer> pila = new Pila<>();
+    int actual = destino;
+    while (actual != -1) {
+        pila.empilar(actual);
+        actual = anterior[actual];
+    }
+    StringBuilder camino = new StringBuilder();
+    boolean primero = true;
+    while (!pila.esta_vacio()) {
+        if (!primero) {
+            camino.append(" -> ");
+        }
+        int zona = pila.desempilar();
+        camino.append(Zonas(zona)).append(" (").append(zona).append(")");
+        primero = false;
+    }
+    return camino.toString();
+}
+    
+
+@Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(zonas + " zonas " + rutasDierectas + " enlaces " + "\n");
