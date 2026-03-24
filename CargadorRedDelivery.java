@@ -13,6 +13,6 @@ public class CargadorRedDelivery {
         }
         System.out.println("=== RED DE DELIVERY FOODEXPRESS ===\n");
         System.out.println(grafo.toString());
-
+        sc.close();
     }
 }

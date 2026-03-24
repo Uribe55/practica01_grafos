@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Grafo {
     private int zonas;
@@ -134,7 +133,6 @@ private String reconstruirCamino(int[] anterior, int inicio, int destino) {
     }
     return camino.toString();
 }
-    
 
 @Override
     public String toString() {
@@ -149,6 +147,7 @@ private String reconstruirCamino(int[] anterior, int inicio, int destino) {
         }
         return s.toString();
     }
+
     public String recorridoCompletoDFS(int inicio) {
         boolean[] visitado = new boolean[zonas];
         Pila<Integer> pila = new Pila<>();

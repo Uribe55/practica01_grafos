@@ -1,6 +1,3 @@
-import java.util.NoSuchElementException;
-import java.util.Iterator;
-
 
 public class FoodExpressTest 
 {
