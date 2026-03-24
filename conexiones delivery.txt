@@ -1,0 +1,11 @@
+# Red de Delivery FoodExpress Cochabamba
+# Formato : origen destino
+# Zonas : 0= El Prado , 1= Cala Cala , 2= America Oeste ,
+# 3= Recoleta , 4= Queru Queru , 5= Aeropuerto
+
+0 1 # El Prado - Cala Cala
+0 2 # El Prado - America Oeste
+1 3 # Cala Cala - Recoleta
+2 3 # America Oeste - Recoleta
+3 4 # Recoleta - Queru Queru
+4 5 # Queru Queru - Aeropuerto
